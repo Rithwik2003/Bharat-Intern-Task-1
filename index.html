@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Management</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: darkgrey;
+        }
+
+        .title-img {
+            width: 600px;
+        }
+
+        form {
+            padding: 30px 0px;
+            display: block;
+            width: 50%;
+            margin: auto;
+            border: 5px solid black;
+        }
+        .img{
+            height: 300px;
+
+            
+        }
+        .video{
+            height: 500px;
+            width: 500px;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Content Management Service</h1>
+    <img class="title-img" src="custom-cms-cover-picture.svg" alt="">
+    <form>
+        Title: <input type="text" name="title" id="title"><br><br>
+        Content: <textarea name="content" id="content"></textarea><br><br>
+        Image: <input type="file" accept="image/*" id="img"><br><br>
+        Video: <input type="file" accept="video/*" id="video"><br><br>
+        <button id="submit">Submit</button>
+    </form>
+
+    <div class="container">
+        <h2>User Entered Data</h2>
+        <div class="title"></div><br>
+        <div class="content"></div><br>
+        <img src="" class="img"><br>
+        <video class="video" controls></video>
+    </div>
+
+    <script>
+        // JavaScript to handle form submission and display content
+        document.getElementById("submit").addEventListener("click", function (e) {
+            e.preventDefault(); // Prevent the form from submitting and refreshing the page
+
+            // Get user inputs
+            var title = document.getElementById("title").value;
+            var content = document.getElementById("content").value;
+            var imgFile = document.getElementById("img").files[0];
+            var videoFile = document.getElementById("video").files[0];
+
+            // Display user inputs
+            document.querySelector(".title").textContent = "Title: " + title;
+            document.querySelector(".content").textContent = "Content: " + content;
+
+            if (imgFile) {
+                var imgElement = document.querySelector(".img");
+                imgElement.src = URL.createObjectURL(imgFile);
+            }
+
+            if (videoFile) {
+                var videoElement = document.querySelector(".video");
+                videoElement.src = URL.createObjectURL(videoFile);
+            }
+        });
+    </script>
+</body>
+
+</html>
